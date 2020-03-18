@@ -1,5 +1,7 @@
 package com.d9nich.exercise11;
 
+import com.d9nich.exercise12.Refactor;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -35,19 +37,7 @@ File outputFile = new File("temp.txt");
         } catch (FileNotFoundException ex) {
             System.out.println(ex.getMessage());
         }
-        try (
-// input and output files
-                Scanner input = new Scanner(outputFile);
-                PrintWriter output = new PrintWriter(sourceFile)
-        ) {
-            while (input.hasNext()) {
-                output.println(input.nextLine());
-            }
-        } catch (FileNotFoundException ex) {
-            System.out.println("Program error");
-        }
-        if (!outputFile.delete())
-            System.out.println("Problem with deleting");
+        Refactor.copyingOfFile(sourceFile, outputFile);
 
     }
 }
