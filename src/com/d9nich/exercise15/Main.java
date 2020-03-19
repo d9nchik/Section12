@@ -43,7 +43,7 @@ public class Main {
                     output.println(input.nextLine());
                 }
             } catch (FileNotFoundException ex) {
-                return -1;
+                positionOfExist = -1;
             }
             com.d9nich.exercise12.Refactor.copyingOfFile(file, outFile);
         }
