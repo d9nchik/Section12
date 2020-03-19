@@ -11,8 +11,8 @@ import java.util.Scanner;
 public class LinkingTwoFiles {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        File bookFile = new File("src/com/d9nich/exercise19/Books.txt");
-        File authorFile = new File("src/com/d9nich/exercise19/Authors.txt");
+        File bookFile = new File("src/com/d9nich/exercise19/books.txt");
+        File authorFile = new File("src/com/d9nich/exercise19/authors.txt");
         char answer;
         do {
             System.out.print("Enter title of book: ");

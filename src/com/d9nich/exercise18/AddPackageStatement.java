@@ -1,6 +1,7 @@
 package com.d9nich.exercise18;
 
 import com.d9nich.exercise12.Refactor;
+import com.d9nich.exercise20.DelPackage;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,17 +14,7 @@ public class AddPackageStatement {
             System.out.println("Usage AddPackageStatement srcRootDirectory");
             System.exit(1);
         }
-        File sourceDirectory = new File(args[0]);
-
-        if (!sourceDirectory.exists()) {
-            System.out.println("Path not exist");
-            System.exit(3);
-        }
-
-        if (!sourceDirectory.isDirectory()) {
-            System.out.println("File has been given");
-            System.exit(2);
-        }
+        File sourceDirectory = DelPackage.validationOfGivenData(args);
 
         markAllFiles(sourceDirectory, sourceDirectory);
     }
@@ -34,7 +25,7 @@ public class AddPackageStatement {
         for (File file : objectInFather) {
             if (file.isDirectory())
                 markAllFiles(file, parent);
-            else
+            else if (file.getName().split("\\.")[1].equals("java"))
                 addPackage(file, parent);
         }
     }
