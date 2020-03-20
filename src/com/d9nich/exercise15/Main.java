@@ -29,6 +29,13 @@ public class Main {
                 String first = "";
                 if (input.hasNext())
                     first = input.nextLine();
+                if (first.equals("")) {
+                    output.println(name);
+                    output.close();
+                    input.close();
+                    com.d9nich.exercise12.Refactor.copyingOfFile(file, outFile);
+                    return 1;
+                }
                 positionOfExist = 1;
                 while (input.hasNext()) {
                     if (first.compareTo(name) > 0)
@@ -37,8 +44,13 @@ public class Main {
                     first = input.nextLine();
                     positionOfExist++;
                 }
-                output.println(name);
-                output.println(first);
+                if (first.compareTo(name) > 0) {
+                    output.println(name);
+                    output.println(first);
+                } else {
+                    output.println(first);
+                    output.println(name);
+                }
                 while (input.hasNext()) {
                     output.println(input.nextLine());
                 }

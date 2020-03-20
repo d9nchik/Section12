@@ -1,7 +1,7 @@
 package com.d9nich.exercise19;
 
 import com.d9nich.exercise12.Refactor;
-import com.d9nich.exercise15.Main;
+import com.d9nich.exercise14.Main;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -13,6 +13,7 @@ public class LinkingTwoFiles {
         Scanner input = new Scanner(System.in);
         File bookFile = new File("src/com/d9nich/exercise19/books.txt");
         File authorFile = new File("src/com/d9nich/exercise19/authors.txt");
+
         char answer;
         do {
             System.out.print("Enter title of book: ");
@@ -31,7 +32,7 @@ public class LinkingTwoFiles {
         try (Scanner input = new Scanner(bookFile); PrintWriter output = new PrintWriter(outputFile)) {
             while (input.hasNext()) {
                 String s1 = input.nextLine();
-                if (s1.split(" ")[0].equals(bookName.split(" ")[0])) {
+                if (s1.matches("[\\d]* " + bookName)) {
                     if (outputFile.delete()) {
                         System.out.println("File deleting unsuccessful!");
                         return false;
@@ -40,7 +41,14 @@ public class LinkingTwoFiles {
                 }
                 output.println(s1);
             }
-            output.println(bookName + " " + Main.writeInFile(authorName, authorFile));
+            int authorPosition = Main.readInFile(authorName, authorFile);
+            if (authorPosition == -1) {
+                output.close();
+                if (outputFile.delete())
+                    System.out.println("deleting unsuccessful");
+                return false;
+            }
+            output.println(bookName + " " + authorPosition);
         } catch (FileNotFoundException ex) {
             return false;
         }
