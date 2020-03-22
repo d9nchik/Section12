@@ -22,7 +22,6 @@ public class WebSearch {
             String urlString = listOfPendingURLs.remove(0);
             if (!listOfTraversedURLs.contains(urlString)) {
                 listOfTraversedURLs.add(urlString);
-                //System.out.println("Crawl " + urlString);
 
                 for (String s : getSubURLs(urlString, searchingWord)) {
                     if (!listOfTraversedURLs.contains(s))
